@@ -16,9 +16,10 @@ public class UserDao {
 	//회원가입
 	public int insert(UserVo userVo) {
 		System.out.println("[UserDao.join()]");
-		System.out.println(userVo);
+		System.out.println("다오 : " + userVo);
 		
-		return sqlSession.insert("user.insert", userVo);
+		//return sqlSession.insert("user.insert", userVo);
+		return 1;
 	}
 	
 }

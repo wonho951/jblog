@@ -42,6 +42,7 @@ public class UserController {
 		System.out.println("[UserController.join()]");
 		
 		userService.join(userVo);
+		System.out.println("컨트롤러 vo: " + userVo);
 		
 		return "user/joinSuccess";
 	}

@@ -3,5 +3,18 @@
 
 <mapper namespace="user">
 	
+	<!-- 회원가입 -->
+	<insert id = "insert" parameterType = "UserVo">
+		<![CDATA[
+		insert into users
+		values ( SEQ_USERS_NO.nextval
+		        , #{id}
+		        , #{userName}
+		        , #{password}
+		        , sysdate
+		)
+		]]>
+	</insert>
+	
 
 </mapper>

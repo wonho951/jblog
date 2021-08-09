@@ -18,7 +18,7 @@ public class UserService {
 		System.out.println("[UserService.join()]");
 		
 		int count = userDao.insert(userVo);
-		System.out.println(count);
+		System.out.println("서비스 :" + count);
 		
 		return count;
 	}
