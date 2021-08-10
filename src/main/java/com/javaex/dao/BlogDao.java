@@ -15,7 +15,7 @@ public class BlogDao {
 	private SqlSession sqlSession;
 	
 	
-	
+	/*
 	//회원가입시 블로그 생성
 	public void insert(UserVo userVo) {
 		System.out.println("[BlogDao.insert()]");
@@ -29,9 +29,9 @@ public class BlogDao {
 		System.out.println("블로그다오: " + blogVo);
 		
 		sqlSession.insert("blog.insertBlog", blogVo);
-	}
+	}*/
 	
-	/*
+	
 	//회원가입시 블로그 생성
 	public int insert(BlogVo blogVo) {
 		System.out.println("[BlogDao.insert()]");
@@ -41,7 +41,7 @@ public class BlogDao {
 		System.out.println("블로그다오: " + blogVo);
 		
 		return sqlSession.insert("blog.insertBlog", blogVo);
-	}*/
+	}
 	
 	
 	

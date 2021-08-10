@@ -19,25 +19,31 @@ public class UserService {
 	
 	
 	//회원가입
-	public void join(UserVo userVo) {
+	public int join(UserVo userVo) {
 		System.out.println("[UserService.join()]");
 		
 		userDao.insert(userVo);
-		//블로그가 만들어져야 함
-		/*
-		BlogVo blogVo = new BlogVo();
 		
+		//블로그가 만들어져야 함
+		String id = userVo.getId();
+		String blogTitle = userVo.getUserName() + "의 블로그입니다.";
+		String logoFile = "/assets/images/spring-logo.jpg";
+		
+		
+		BlogVo blogVo = new BlogVo(id, blogTitle, logoFile);
+		/*
 		blogVo.setId(userVo.getId());
 		blogVo.setBlogTitle(userVo.getUserName() + "의 블로그입니다.");  
 		blogVo.setLogoFile("/assets/images/spring-logo.jpg");
 		blogVo.setUserName(userVo.getUserName());
-		
+		*/
 		System.out.println(blogVo);
 	
 		
 		System.out.println("서비스 userVo:"+userVo);
-		//blogDao.insert(blogVo);
-		blogDao.insert(userVo);
+		//blogDao.insert(userVo);
+		return blogDao.insert(blogVo);
+		
 		
 	}
 	

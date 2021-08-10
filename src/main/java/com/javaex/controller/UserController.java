@@ -45,7 +45,9 @@ public class UserController {
 	public String join(@ModelAttribute UserVo userVo) {
 		System.out.println("[UserController.join()]");
 		System.out.println("보내기전:" + userVo);
+		
 		userService.join(userVo);
+		
 		System.out.println("갔다온후: " + userVo);
 		
 		return "user/joinSuccess";

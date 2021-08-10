@@ -7,7 +7,7 @@ public class BlogVo {
 	private String blogTitle;
 	private String logoFile;
 	
-	private String userName;
+	//private String userName;
 	//생성자
 	public BlogVo() {
 		super();
@@ -23,14 +23,11 @@ public class BlogVo {
 
 
 
-	public BlogVo(String id, String blogTitle, String logoFile, String userName) {
-		super();
-		this.id = id;
-		this.blogTitle = blogTitle;
-		this.logoFile = logoFile;
-		this.userName = userName;
-	}
-
+	/*
+	 * public BlogVo(String id, String blogTitle, String logoFile, String userName)
+	 * { super(); this.id = id; this.blogTitle = blogTitle; this.logoFile =
+	 * logoFile; this.userName = userName; }
+	 */
 
 	//메소드 g/s
 	public String getId() {
@@ -53,22 +50,20 @@ public class BlogVo {
 	}
 	
 	
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+	/*
+	 * public String getUserName() { return userName; }
+	 * 
+	 * public void setUserName(String userName) { this.userName = userName; }
+	 */
 
 
 
 	//메소드-일반
-	@Override
-	public String toString() {
+	/* @Override */
+/*	public String toString() {
 		return "BlogVo [id=" + id + ", blogTitle=" + blogTitle + ", logoFile=" + logoFile + ", userName=" + userName
 				+ "]";
 	}
-	
+	*/
 	
 }
