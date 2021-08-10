@@ -22,10 +22,20 @@ public class UserService {
 	public int join(UserVo userVo) {
 		System.out.println("[UserService.join()]");
 		
-		int count = userDao.insert(userVo);
-	
+		
+		
+		/* -> 여기서 만들면 어떻게 넘겨야 하는지 생각 좀만 해보자.
+		//블로그가 만들어져야 함
+		String id = userVo.getId();
+		String blogTitle = userVo.getUserName() + "의 블로그입니다.";  
+		String logoFile = "/assets/images/spring-logo.jpg";
+		
+		BlogVo blogVo = new BlogVo(id, blogTitle, logoFile);
+		//블로그dao로 보내서 블로그 생성시킴
+		blogDao.insert(blogVo);*/
+		
 				
-		return count;
+		return userDao.insert(userVo);
 	}
 	
 	
