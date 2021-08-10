@@ -35,6 +35,7 @@ public class UserDao {
 	//로그인
 	public UserVo selectUser(UserVo userVo) {
 		System.out.println("[UserDao.selectUser()]");
+		System.out.println(userVo);
 		
 		return sqlSession.selectOne("user.selectUser", userVo);
 	}

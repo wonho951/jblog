@@ -80,8 +80,6 @@ public class UserController {
 		if(authUser != null) {
 			System.out.println("[로그인성공]");
 			session.setAttribute("authUser", authUser);
-			System.out.println(session.toString());
-			
 			
 			return "redirect:/";
 			
@@ -94,24 +92,20 @@ public class UserController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//로그아웃
+	@RequestMapping(value = "/logout", method = {RequestMethod.GET, RequestMethod.POST})
+	public String logout(HttpSession session) {
+		System.out.println("[UserController.logout]");
+		System.out.println(session);
+		
+		//세션 정보 삭제
+		session.removeAttribute("authUser");
+		
+		//메모리 삭제
+		session.invalidate();
+		
+		return "redirect:/";
+	}
 	
 	
 	
