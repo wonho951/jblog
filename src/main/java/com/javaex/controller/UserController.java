@@ -90,8 +90,32 @@ public class UserController {
 			return "redirect:/user/loginForm?result=fail";
 		}
 		
-		
-		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
