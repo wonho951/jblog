@@ -9,9 +9,11 @@ public class BlogController {
 
 	
 	//블로그 메인
-	@RequestMapping(value = "", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "{id}", method = {RequestMethod.GET, RequestMethod.POST})
 	public String main() {
+		System.out.println("[BlogController.main()]");
 		
-		return "";
+		
+		return "blog/blog-main";
 	}
 }
