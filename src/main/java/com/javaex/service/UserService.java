@@ -23,16 +23,7 @@ public class UserService {
 		System.out.println("[UserService.join()]");
 		
 		int count = userDao.insert(userVo);
-		
-		
-		//블로그가 만들어져야 함
-		String id = userVo.getId();
-		String blogTitle = userVo.getUserName() + "의 블로그입니다.";  
-		String logoFile = "spring-logo.jps";
-		
-		BlogVo blogVo = new BlogVo(id, blogTitle, logoFile);
-		blogDao.insert(blogVo);
-		
+	
 				
 		return count;
 	}
