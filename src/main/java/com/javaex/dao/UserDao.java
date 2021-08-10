@@ -24,10 +24,18 @@ public class UserDao {
 	
 	//아이디 중복 체크
 	public UserVo selectUser(String id) {
-		System.out.println("[UserDao.selectUser()]");
+		System.out.println("[UserDao.selectUser(String)]");
 		System.out.println(id);
 		
 		
 		return sqlSession.selectOne("user.selectUserById", id);
+	}
+	
+	
+	//로그인
+	public UserVo selectUser(UserVo userVo) {
+		System.out.println("[UserDao.selectUser()]");
+		
+		return sqlSession.selectOne("user.selectUser", userVo);
 	}
 }

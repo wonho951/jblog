@@ -46,7 +46,7 @@
 		      		<tr>
 		      			<td><span>약관동의</span> </td>
 		      			<td colspan="3">
-		      				<input id="chkAgree" type="checkbox" name="agree" value="y">
+		      				<input id="chkAgree" type="checkbox" name="agree" value="">
 		      				<label for="chkAgree">서비스 약관에 동의합니다.</label>
 		      			</td>   
 		      		</tr>   		
@@ -117,7 +117,13 @@ $("#joinForm").on("submit", function() {
     }
     
     //아이디 중복체크 여부
-    var check = $("#btnIdCheck")
+    /*
+    var check = $("#tdMsg").html() == "사용가능한 아이디 입니다.";
+    if(check == null) {
+    	alert("중복 체크를 해주세요.")
+    	return false;
+    }*/
+    
     
     //패스워드 5글자 이상 체크
     var password = $("#txtPassword").val();
@@ -133,9 +139,8 @@ $("#joinForm").on("submit", function() {
  	      return false;
     }
    
-   
     //약관동의 체크
-    var agree = $("chkAgree").is(":checked");
+    var agree = $("#chkAgree").is(":checked");
     console.log(agree);
 	if(agree == false){
 		alert("약관에 동의해 주세요.");

@@ -36,4 +36,14 @@ public class UserService {
 		
 	}
 	
+	
+	//로그인
+	public UserVo getUser(UserVo userVo) {
+		System.out.println("[UserService.getUser()]");
+		
+		UserVo authUser = userDao.selectUser(userVo);
+		
+		return authUser;
+	}
+	
 }
