@@ -75,7 +75,7 @@ public class UserController {
 		System.out.println(userVo);
 		
 		UserVo authUser = userService.getUser(userVo);
-		System.out.println("로그인 정보: " + authUser.toString());
+		System.out.println("로그인 정보: " + authUser);
 		
 		if(authUser != null) {
 			System.out.println("[로그인성공]");
