@@ -21,4 +21,13 @@ public class UserDao {
 		return sqlSession.insert("user.insert", userVo);
 	}
 	
+	
+	//아이디 중복 체크
+	public UserVo selectUser(String id) {
+		System.out.println("[UserDao.selectUser()]");
+		System.out.println(id);
+		
+		
+		return sqlSession.selectOne("user.selectUserById", id);
+	}
 }

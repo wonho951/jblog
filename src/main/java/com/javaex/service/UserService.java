@@ -17,11 +17,23 @@ public class UserService {
 	public int join(UserVo userVo) {
 		System.out.println("[UserService.join()]");
 		
-		int count = userDao.insert(userVo);
-		System.out.println("서비스 :" + count);
-		
-		return count;
+		return userDao.insert(userVo);
 	}
 	
+	
+	//아이디 중복체크
+	public boolean getUser(String id) {
+		System.out.println("[UserService.getUser(String)]");
+		
+		UserVo userVo = userDao.selectUser(id);
+		System.out.println(userVo);
+		
+		if(userVo == null) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
 	
 }
