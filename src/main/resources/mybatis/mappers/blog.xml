@@ -4,13 +4,13 @@
 <mapper namespace="blog">
 
 	<!-- 회원가입 -->
-	<insert id="insert" parameterType="BlogVo">
+	<insert id="insertBlog" parameterType="BlogVo">
 		<![CDATA[
 			insert into blog
 			values (  #{id}
 			         ,#{blogTitle}
 			         ,#{logoFile}
-			)	
+			)
 		]]>
 	</insert>
 

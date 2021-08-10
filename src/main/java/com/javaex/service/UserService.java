@@ -19,23 +19,26 @@ public class UserService {
 	
 	
 	//회원가입
-	public int join(UserVo userVo) {
+	public void join(UserVo userVo) {
 		System.out.println("[UserService.join()]");
 		
-		
-		
-		/* -> 여기서 만들면 어떻게 넘겨야 하는지 생각 좀만 해보자.
+		userDao.insert(userVo);
 		//블로그가 만들어져야 함
-		String id = userVo.getId();
-		String blogTitle = userVo.getUserName() + "의 블로그입니다.";  
-		String logoFile = "/assets/images/spring-logo.jpg";
+		/*
+		BlogVo blogVo = new BlogVo();
 		
-		BlogVo blogVo = new BlogVo(id, blogTitle, logoFile);
-		//블로그dao로 보내서 블로그 생성시킴
-		blogDao.insert(blogVo);*/
+		blogVo.setId(userVo.getId());
+		blogVo.setBlogTitle(userVo.getUserName() + "의 블로그입니다.");  
+		blogVo.setLogoFile("/assets/images/spring-logo.jpg");
+		blogVo.setUserName(userVo.getUserName());
 		
-				
-		return userDao.insert(userVo);
+		System.out.println(blogVo);
+	
+		
+		System.out.println("서비스 userVo:"+userVo);
+		//blogDao.insert(blogVo);
+		blogDao.insert(userVo);
+		
 	}
 	
 	

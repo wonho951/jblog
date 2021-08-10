@@ -13,6 +13,16 @@ public class UserVo {
 	public UserVo() {
 		super();
 	}
+	
+	public UserVo(int userNo, String id, String userName, String password) {
+		super();
+		this.userNo = userNo;
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
+	}
+
+
 	public UserVo(int userNo, String id, String userName, String password, String joinDate) {
 		super();
 		this.userNo = userNo;

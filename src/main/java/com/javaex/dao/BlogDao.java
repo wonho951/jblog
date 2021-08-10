@@ -19,13 +19,30 @@ public class BlogDao {
 	//회원가입시 블로그 생성
 	public void insert(UserVo userVo) {
 		System.out.println("[BlogDao.insert()]");
+		System.out.println(userVo);
 		
-		BlogVo blogVo = new BlogVo();
+		String id = userVo.getId();
+		String blogTitle = userVo.getUserName() + "의 블로그 입니다.";
+		String logoFile = "/assets/images/spring-logo.jpg";
 		
-		
-		System.out.println(blogVo);
-		
+		BlogVo blogVo = new BlogVo(id, blogTitle, logoFile);
+		System.out.println("블로그다오: " + blogVo);
 		
 		sqlSession.insert("blog.insertBlog", blogVo);
 	}
+	
+	/*
+	//회원가입시 블로그 생성
+	public int insert(BlogVo blogVo) {
+		System.out.println("[BlogDao.insert()]");
+		System.out.println(blogVo);
+		
+		
+		System.out.println("블로그다오: " + blogVo);
+		
+		return sqlSession.insert("blog.insertBlog", blogVo);
+	}*/
+	
+	
+	
 }

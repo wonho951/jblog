@@ -44,9 +44,9 @@ public class UserController {
 	@RequestMapping(value = "/join", method = {RequestMethod.GET, RequestMethod.POST})
 	public String join(@ModelAttribute UserVo userVo) {
 		System.out.println("[UserController.join()]");
-		
+		System.out.println("보내기전:" + userVo);
 		userService.join(userVo);
-		System.out.println("컨트롤러 vo: " + userVo);
+		System.out.println("갔다온후: " + userVo);
 		
 		return "user/joinSuccess";
 	}
