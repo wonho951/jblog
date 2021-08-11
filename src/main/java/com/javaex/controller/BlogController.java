@@ -32,9 +32,10 @@ public class BlogController {
 		BlogVo blogVo = blogService.selectOne(id);
 		System.out.println(blogVo);
 		
+		/*
 		//카테고리 리스트 뿌려주기(제목)
 		List<CategoryVo> categoryList = categoryService.categoryList(id);
-		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("categoryList", categoryList);*/
 		
 		//블로그 생성 및 카테고리 
 		if (blogVo != null) {
@@ -48,13 +49,28 @@ public class BlogController {
 		
 	}
 	
-	
-	//개인블로그 관리
+	//개인블로그 관리 페이지
 	@RequestMapping(value = "/{id}/admin/basic", method = {RequestMethod.GET, RequestMethod.POST})
-	public String admin() {
+	public String admin(@PathVariable("id") String id, Model model) {
+		System.out.println("[BlogController.admin()]" + id);
 		
+		BlogVo blogVo = blogService.selectOne(id);
+		
+		model.addAttribute("blogVo", blogVo);
 		
 		return "blog/admin/blog-admin-basic";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
