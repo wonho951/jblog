@@ -52,12 +52,20 @@ public class BlogDao {
 	}
 	
 	
-	//블로그 기본설정(타이틀, 이미지 바꾸기)
-	public int upload(BlogVo blogVo) {
+	//블로그 기본설정(타이틀, 이미지 바꾸기) -> int에서 void로 수정
+	public void upload(BlogVo blogVo) {
 		System.out.println("[BlogDao.upload(BlogVo blogVo)]");
 		System.out.println(blogVo);
 		
-		return sqlSession.update("blog.update", blogVo);
+		sqlSession.update("blog.update", blogVo);
+	}
+	
+	//블로그 기본설정(타이틀만 바꾸기)
+	public void uploadTitle(BlogVo blogVo) {
+		System.out.println("[BlogDao.uploadTitle(BlogVo blogVo)]");
+		
+		sqlSession.update("blog.updateTitle", blogVo);
+		
 	}
 	
 	

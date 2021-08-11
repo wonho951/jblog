@@ -13,6 +13,14 @@ public class BlogVo {
 	public BlogVo() {
 		super();
 	}
+	
+
+	public BlogVo(String id, String blogTitle) {
+		super();
+		this.id = id;
+		this.blogTitle = blogTitle;
+	}
+
 
 	public BlogVo(String id, String blogTitle, String logoFile) {
 		super();

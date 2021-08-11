@@ -36,6 +36,7 @@ public class UserService {
 		
 		
 		BlogVo blogVo = new BlogVo(id, blogTitle, logoFile);
+		//BlogVo blogVo = new BlogVo(id, blogTitle, null);
 		System.out.println(blogVo);
 		blogDao.insert(blogVo);
 		/*
