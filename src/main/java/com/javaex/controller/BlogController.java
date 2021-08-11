@@ -72,6 +72,8 @@ public class BlogController {
 		System.out.println("컨트롤러vo : " + blogVo);
 		System.out.println("컨트롤러file : " + file);
 		
+		
+		
 		return "";
 	}
 	
