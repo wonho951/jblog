@@ -44,7 +44,12 @@ public class BlogDao {
 	
 	
 	
-
+	//블로그 들어갈때 쓸 id 꺼내오기
+	public BlogVo selectOne(String id) {
+		System.out.println("[BlogDao.selectOne(id)]" + id);
+		
+		return sqlSession.selectOne(id);
+	}
 	
 	
 	

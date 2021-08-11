@@ -12,7 +12,12 @@ public class BlogService {
 	@Autowired
 	private BlogDao blogDao;
 	
-
+	//블로그 들어갈때 쓸 id 꺼내오기
+	public BlogVo selectOne(String id) {
+		System.out.println("[BlogService.selectOne(id)]" + id);
+		
+		return blogDao.selectOne(id);
+	}
 	
 	
 	
