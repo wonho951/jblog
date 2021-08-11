@@ -10,5 +10,20 @@
 		]]>
 	</select>
 
+	
+	<!-- 정보 받아서 카테고리 생성 -->
+	<insert id="insert" parameterType="CategoryVo">
+		<![CDATA[
+			insert into category
+			values(  seq_category_no.nextval
+					,#{id}
+					,#{cateName}
+					,#{description}
+					,sysdate
+				   )			
+		]]>
+	</insert>
+
+	
 
 </mapper>

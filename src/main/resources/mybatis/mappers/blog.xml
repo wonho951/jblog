@@ -14,7 +14,7 @@
 		]]>
 	</insert>
 
-
+	<!-- 자기 블로그 조회 -->
 	<select id = "selectOne" parameterType="String" resultType="BlogVo">
 		<![CDATA[
 			select   b.id
@@ -24,6 +24,17 @@
 			from blog b, users u
 			where b.id = u.id
 			and b.id = #{id}
+		]]>
+	</select>
+	
+	
+	<!-- 블로그 기본설정(타이틀, 이미지 바꾸기) -->
+	<select id = "update" parameterType="BlogVo">
+		<![CDATA[
+			update blog
+			set blogTitle = #{blogTitle},
+			    logoFile = #{logoFile}
+			where id = #{id}
 		]]>
 	</select>
 </mapper>

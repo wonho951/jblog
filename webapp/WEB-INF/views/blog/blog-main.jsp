@@ -24,7 +24,7 @@
 					<!-- 기본이미지 -->
 					<!-- c:if로 해봤는데 안되네; -->
 					<c:choose>
-						<c:when test="${sessionScope.blogVo.logoFile eq null }">
+						<c:when test="${blogVo.logoFile == null }">
 							<img id="proImg" src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
 						</c:when>
 					

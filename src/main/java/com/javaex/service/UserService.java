@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.BlogDao;
+import com.javaex.dao.CategoryDao;
 import com.javaex.dao.UserDao;
 import com.javaex.vo.BlogVo;
 import com.javaex.vo.UserVo;
@@ -17,6 +18,8 @@ public class UserService {
 	@Autowired
 	private BlogDao blogDao;  //blogdao
 	
+	@Autowired
+	private CategoryDao categoryDao;
 	
 	//회원가입
 	public int join(UserVo userVo) {
@@ -27,7 +30,9 @@ public class UserService {
 		//블로그가 만들어져야 함
 		String id = userVo.getId();
 		String blogTitle = userVo.getUserName() + "의 블로그입니다.";
-		String logoFile = "/assets/images/spring-logo.jpg";
+		//String logoFile = "/assets/images/spring-logo.jpg";
+		String logoFile = "none";
+		//String logoFile = null;	-> 애초에 null값 주는데 왜 오류나는거지
 		
 		
 		BlogVo blogVo = new BlogVo(id, blogTitle, logoFile);
@@ -40,6 +45,8 @@ public class UserService {
 		blogVo.setUserName(userVo.getUserName());
 		*/
 		
+		//카테고리 생성하려면 정보 넘겨야함
+		categoryDao.insert(userVo);
 	
 		
 		System.out.println("서비스 userVo:"+userVo);

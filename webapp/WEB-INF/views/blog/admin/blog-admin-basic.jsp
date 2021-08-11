@@ -26,7 +26,7 @@
 			<!-- //admin-menu -->
 			
 			<div id="admin-content">
-				<form action="${pageContext.request.contextPath}/upload" method="post" enctype="multipart/form-data">
+				<form action="${pageContext.request.contextPath}/upload" method="get" enctype="multipart/form-data">
 	 		      	<table id="admin-basic">
 	 		      		<colgroup>
 							<col style="width: 100px;">
@@ -38,16 +38,24 @@
 			      		</tr>
 			      		<tr>
 			      			<td><label>로고이미지</label></td>
-			      			<td class="text-left">
-								<c:choose>
-									<c:when test="${sessionScope.blogVo.logoFile eq null }">
-										<img id="proImg" src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+			      			
+								 <c:choose>
+									<c:when test="${blogVo.logoFile == null }">
+										<td class="text-left"><img id="proImg" src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg"></td>
 									</c:when>
 									<c:otherwise>
-										<img id="proImg" src="${pageContext.request.contextPath}/upload/${blogVo.logoFile}">
-									</c:otherwise>
-								</c:choose>
-			      			</td>   
+										<td class="text-left"><img id="proImg" src="${pageContext.request.contextPath}/upload/${blogVo.logoFile}"></td>
+									 </c:otherwise>
+								</c:choose> 
+			      			   
+			      			   <%-- <c:if test="${blogVo.logoFile == 'null'}">
+			      			   		<td class="text-left"><img id="proImg" src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg"></td>
+			      			   </c:if>
+			      			   
+			      			   <c:if test="${blogVo.logoFile != 'null'}">
+			      			   		<td class="text-left"><img id="proImg" src="${pageContext.request.contextPath}/upload/${blogVo.logoFile}"></td>
+			      			   </c:if> --%>
+			      			   
 			      		</tr>      		
 			      		<tr>
 			      			<td>&nbsp;</td>

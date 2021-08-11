@@ -72,8 +72,12 @@ public class BlogController {
 		System.out.println("컨트롤러vo : " + blogVo);
 		System.out.println("컨트롤러file : " + file);
 		
+		blogService.upload(blogVo, file);
+		System.out.println("컨트롤러vo 갔다온거: " + blogVo);
+		System.out.println("컨트롤러file 갔다온거: " + file);
 		
 		
+		//return "redirect:/" + id + "/admin/basic";
 		return "";
 	}
 	

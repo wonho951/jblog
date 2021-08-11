@@ -52,6 +52,14 @@ public class BlogDao {
 	}
 	
 	
+	//블로그 기본설정(타이틀, 이미지 바꾸기)
+	public int upload(BlogVo blogVo) {
+		System.out.println("[BlogDao.upload(BlogVo blogVo)]");
+		System.out.println(blogVo);
+		
+		return sqlSession.update("blog.update", blogVo);
+	}
+	
 	
 	
 }
