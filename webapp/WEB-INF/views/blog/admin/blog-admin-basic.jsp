@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>JBlog</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
-
+<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
 
 </head>
 
@@ -26,7 +26,7 @@
 			<!-- //admin-menu -->
 			
 			<div id="admin-content">
-				<form action="${pageContext.request.contextPath}/${authUser.id}/admin/basic" method="post" >
+				<form action="${pageContext.request.contextPath}/upload" method="post" enctype="multipart/form-data">
 	 		      	<table id="admin-basic">
 	 		      		<colgroup>
 							<col style="width: 100px;">
@@ -34,17 +34,27 @@
 						</colgroup>
 			      		<tr>
 			      			<td><label for="textTitle">블로그 제목</label></td>
-			      			<td><input id="textTitle" type="text" name="blogTitle" value=""></td>
+			      			<td><input id="textTitle" type="text" name="blogTitle" value="${blogVo.blogTitle }"></td>
 			      		</tr>
 			      		<tr>
 			      			<td><label>로고이미지</label></td>
-			      			<td class="text-left"><img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg"></td>   
+			      			<td class="text-left">
+								<c:choose>
+									<c:when test="${sessionScope.blogVo.logoFile eq null }">
+										<img id="proImg" src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">
+									</c:when>
+									<c:otherwise>
+										<img id="proImg" src="${pageContext.request.contextPath}/upload/${blogVo.logoFile}">
+									</c:otherwise>
+								</c:choose>
+			      			</td>   
 			      		</tr>      		
 			      		<tr>
 			      			<td>&nbsp;</td>
 			      			<td><input id="textLogo" type="file" name="file"></td>      			
 			      		</tr>           		
 			      	</table>
+			      	<input type = "text" name = "id" value = "${authUser.id }">
 			      	<div id="btnArea">
 			      		<button class="btn_l" type="submit" >기본설정변경</button>
 			      	</div>
@@ -63,4 +73,18 @@
 	</div>
 	<!-- //wrap -->
 </body>
+
+<script type="text/javascript">
+/*
+//기본설정 변경버튼 클릭시 이미지 블로그 제목 바꾸기
+$("#btnArea").on("click", "button", function(){
+	event.preventDefault();
+	console.log("기본설정 변경 버튼 클릭")
+	
+	
+});*/
+
+</script>
+
+
 </html>

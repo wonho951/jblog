@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.BlogService;
 import com.javaex.service.CategoryService;
@@ -49,7 +52,7 @@ public class BlogController {
 		
 	}
 	
-	//개인블로그 관리 페이지
+	//블로그 관리 페이지
 	@RequestMapping(value = "/{id}/admin/basic", method = {RequestMethod.GET, RequestMethod.POST})
 	public String admin(@PathVariable("id") String id, Model model) {
 		System.out.println("[BlogController.admin()]" + id);
@@ -60,6 +63,18 @@ public class BlogController {
 		
 		return "blog/admin/blog-admin-basic";
 	}
+	
+	//블로그 기본설정(타이틀, 이미지 바꾸기)
+	@RequestMapping(value = "/upload", method = {RequestMethod.GET, RequestMethod.POST})
+	public String upload(@ModelAttribute BlogVo blogVo, @RequestParam("file") MultipartFile file,
+						 @RequestParam("id") String id) {
+		System.out.println("[BlogController.upload]");
+		System.out.println("컨트롤러vo : " + blogVo);
+		System.out.println("컨트롤러file : " + file);
+		
+		return "";
+	}
+	
 	
 	
 	
