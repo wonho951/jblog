@@ -52,7 +52,7 @@ public class BlogDao {
 	}
 	
 	
-	//블로그 기본설정(타이틀, 이미지 바꾸기) -> int에서 void로 수정
+	//블로그 기본설정(타이틀, 이미지 바꾸기) -> int에서 void로 수정 -> 사진 있어도 없어도 업데이트 되기만 하면 그만이니깐..하..
 	public void upload(BlogVo blogVo) {
 		System.out.println("[BlogDao.upload(BlogVo blogVo)]");
 		System.out.println(blogVo);
