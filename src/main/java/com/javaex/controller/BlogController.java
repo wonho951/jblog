@@ -24,12 +24,23 @@ public class BlogController {
 
 		//메인페이지에 뿌려줄 정보
 		BlogVo blogVo = blogService.selectOne(id);
-		
+		System.out.println(blogVo);
 		//블로그 생성
 		
 		model.addAttribute("blogVo", blogVo);
-		
+		System.out.println("컨트롤러"+model);
+		System.out.println(blogVo);
 		
 		return "blog/blog-main";
 	}
+	
+	
+	//개인블로그 관리
+	@RequestMapping(value = "/{id}/admin/basic", method = {RequestMethod.GET, RequestMethod.POST})
+	public String admin() {
+		
+		
+		return "blog/admin/blog-admin-basic";
+	}
+	
 }

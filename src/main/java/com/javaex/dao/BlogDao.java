@@ -48,7 +48,7 @@ public class BlogDao {
 	public BlogVo selectOne(String id) {
 		System.out.println("[BlogDao.selectOne(id)]" + id);
 		
-		return sqlSession.selectOne(id);
+		return sqlSession.selectOne("blog.selectOne", id);
 	}
 	
 	
