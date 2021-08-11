@@ -61,13 +61,14 @@ public class BlogController {
 		
 		model.addAttribute("blogVo", blogVo);
 		
+		
 		return "blog/admin/blog-admin-basic";
 	}
 	
 	//블로그 기본설정(타이틀, 이미지 바꾸기)
-	@RequestMapping(value = "/upload", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/{id}/admin/basic/upload", method = {RequestMethod.GET, RequestMethod.POST})
 	public String upload(@ModelAttribute BlogVo blogVo, @RequestParam("file") MultipartFile file,
-						 @RequestParam("id") String id) {
+						 @PathVariable("id") String id) {
 		System.out.println("[BlogController.upload]");
 		System.out.println("컨트롤러vo : " + blogVo);
 		System.out.println("컨트롤러file : " + file);
@@ -76,9 +77,8 @@ public class BlogController {
 		System.out.println("컨트롤러vo 갔다온거: " + blogVo);
 		System.out.println("컨트롤러file 갔다온거: " + file);
 		
-		
-		//return "redirect:/" + id + "/admin/basic";
-		return "";
+		return "redirect:/" + id + "/admin/basic";
+		//return "";
 	}
 	
 	

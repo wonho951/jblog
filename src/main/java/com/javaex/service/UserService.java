@@ -31,7 +31,7 @@ public class UserService {
 		String id = userVo.getId();
 		String blogTitle = userVo.getUserName() + "의 블로그입니다.";
 		//String logoFile = "/assets/images/spring-logo.jpg";
-		String logoFile = "none";
+		String logoFile = "";
 		//String logoFile = null;	-> 애초에 null값 주는데 왜 오류나는거지
 		
 		

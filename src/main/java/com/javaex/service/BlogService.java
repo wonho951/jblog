@@ -89,6 +89,8 @@ public class BlogService {
 	    System.out.println("다오보내기전:"+blogVo.toString());  
 	    // System.out.println("다오갔다온거:"+blogVo.toString());  
 	    return blogDao.upload(blogVo);
+	    
+	    
 	}
 	
 	
