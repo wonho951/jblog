@@ -4,7 +4,7 @@
 <mapper namespace="blog">
 
 	<!-- 회원가입시 블로그 생성 -->
-	<insert id="insertBlog" parameterType="BlogVo">
+	<insert id="insertBlog" parameterType="BlogVo"> 	
 		<![CDATA[
 			insert into blog
 			values (  #{id}
@@ -13,5 +13,7 @@
 			)
 		]]>
 	</insert>
+
+
 
 </mapper>

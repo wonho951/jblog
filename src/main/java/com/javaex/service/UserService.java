@@ -11,18 +11,18 @@ import com.javaex.vo.UserVo;
 @Service
 public class UserService {
 
+	@Autowired	//하나에 하나씩이다...
+	private UserDao userDao;  //userdao
+	
 	@Autowired
-	//userdao
-	private UserDao userDao;
-	//blogdao
-	private BlogDao blogDao;
+	private BlogDao blogDao;  //blogdao
 	
 	
 	//회원가입
 	public int join(UserVo userVo) {
 		System.out.println("[UserService.join()]");
 		
-		userDao.insert(userVo);
+		int count = userDao.insert(userVo);
 		
 		//블로그가 만들어져야 함
 		String id = userVo.getId();
@@ -31,23 +31,24 @@ public class UserService {
 		
 		
 		BlogVo blogVo = new BlogVo(id, blogTitle, logoFile);
+		System.out.println(blogVo);
+		blogDao.insert(blogVo);
 		/*
 		blogVo.setId(userVo.getId());
 		blogVo.setBlogTitle(userVo.getUserName() + "의 블로그입니다.");  
 		blogVo.setLogoFile("/assets/images/spring-logo.jpg");
 		blogVo.setUserName(userVo.getUserName());
 		*/
-		System.out.println(blogVo);
+		
 	
 		
 		System.out.println("서비스 userVo:"+userVo);
 		//blogDao.insert(userVo);
-		return blogDao.insert(blogVo);
+		return count;
 		
-		
-	}
+	}	
 	
-	
+
 	//아이디 중복체크
 	public boolean getUser(String id) {
 		System.out.println("[UserService.getUser(String)]");

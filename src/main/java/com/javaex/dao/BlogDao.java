@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.BlogVo;
-import com.javaex.vo.UserVo;
 
 @Repository
 public class BlogDao {
@@ -33,15 +32,20 @@ public class BlogDao {
 	
 	
 	//회원가입시 블로그 생성
-	public int insert(BlogVo blogVo) {
+	public void insert(BlogVo blogVo) {
 		System.out.println("[BlogDao.insert()]");
 		System.out.println(blogVo);
 		
 		
 		System.out.println("블로그다오: " + blogVo);
 		
-		return sqlSession.insert("blog.insertBlog", blogVo);
+		sqlSession.insert("blog.insertBlog", blogVo);
 	}
+	
+	
+	
+
+	
 	
 	
 	
