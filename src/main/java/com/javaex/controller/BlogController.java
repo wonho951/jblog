@@ -26,12 +26,15 @@ public class BlogController {
 		BlogVo blogVo = blogService.selectOne(id);
 		System.out.println(blogVo);
 		//블로그 생성
+		if (blogVo != null) {
+			model.addAttribute("blogVo", blogVo);
+			//System.out.println("컨트롤러"+model);
+			
+			return "blog/blog-main";
+		} else {
+			return "error/403";
+		}
 		
-		model.addAttribute("blogVo", blogVo);
-		System.out.println("컨트롤러"+model);
-		System.out.println(blogVo);
-		
-		return "blog/blog-main";
 	}
 	
 	

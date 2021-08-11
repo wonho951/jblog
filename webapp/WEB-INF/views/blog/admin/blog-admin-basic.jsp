@@ -12,6 +12,7 @@
 
 <body>
 	<div id="wrap">
+	
 		<c:import url="/WEB-INF/views/includes/blog-header.jsp"></c:import>
 		<!-- 개인블로그 해더 -->
 
