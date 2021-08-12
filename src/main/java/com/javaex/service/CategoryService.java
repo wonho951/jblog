@@ -49,6 +49,14 @@ public class CategoryService {
 		return cateVo;
 	}
 	
+	//삭제
+	public int removeCategory(int cateNo) {
+		System.out.println("[CategoryService.removeCategory()]");
+		System.out.println("서비스 :" + cateNo);
+		//return 1;
+		return categoryDao.categoryRemove(cateNo);
+	}
+	
 	
 	
 }

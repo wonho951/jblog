@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.CategoryService;
@@ -46,5 +47,17 @@ public class CategoryController {
 		System.out.println(cateVo);
 		return cateVo;
 	}
+	
+	
+	//카테고리 삭제
+	@ResponseBody
+	@RequestMapping(value = "/admin/category/remove", method = {RequestMethod.GET, RequestMethod.POST})
+	public int remove(@RequestParam("cateNo") int cateNo) {
+		System.out.println("[CategoryController.remove()]");
+		System.out.println("컨트롤러 :"  + cateNo);
+		
+		
+		//return 1;
+		return categoryService.removeCategory(cateNo);
+	}
 }
-//너 저 유알엘 아뒤는 일부러빼고보내는거임?ㅇㅇㅇㅇㅋㅇㅋ? 뭐가어쨋다는거임?? 잘보셈 

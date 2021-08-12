@@ -88,7 +88,7 @@ public class BlogController {
 	//내 블로그 관리(카테고리)
 	@RequestMapping(value = "/{id}/admin/category", method = {RequestMethod.GET, RequestMethod.POST})
 	public String category(@PathVariable("id") String id, Model model) {
-		System.out.println("[BlogController.category]여기로ㅓ 올까영" + id);
+		System.out.println("[BlogController.category]" + id);
 		
 		BlogVo blogVo = blogService.selectOne(id);
 		System.out.println("ddfdsf" + blogVo);

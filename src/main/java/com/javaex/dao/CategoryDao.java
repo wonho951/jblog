@@ -61,4 +61,13 @@ public class CategoryDao {
 	}
 	
 	
+	//카테고리 삭제
+	public int categoryRemove(int cateNo) {
+		System.out.println("[CategoryDao.categoryRemove]");
+		System.out.println("다오다오이리로 와다오 :" + cateNo);
+		//return 1;
+		return sqlSession.delete("category.categoryRemove", cateNo);
+	}
+	
+	
 }

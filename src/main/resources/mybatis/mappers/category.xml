@@ -94,6 +94,12 @@
 	</select>
 	
 	
-	
+	<!-- 카테고리 삭제 -->
+	<delete id="categoryRemove" parameterType="int">
+		<![CDATA[
+			delete from category
+			where cateNo = #{cateNo}
+		]]>
+	</delete>
 
 </mapper>
