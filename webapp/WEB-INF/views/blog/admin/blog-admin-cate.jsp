@@ -47,7 +47,7 @@
 		      		</thead>
 		      		<tbody id="cateList">
 		      			<!-- 리스트 영역 -->
-		      			<%-- <tr>
+		      			<tr>
 							<td>1</td>
 							<td>자바프로그래밍</td>
 							<td>7</td>
@@ -64,7 +64,7 @@
 						    <td class='text-center'>
 						    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">
 						    </td>
-						</tr> --%>
+						</tr>
 						<!-- 리스트 영역 -->
 					</tbody>
 				</table>
@@ -115,10 +115,13 @@ $(document).ready(function(){
 
 
 
-
+/*
 $("#btnAddCate").on("click", function(){
 	//event.preventDefault();
 	console.log("카테고리 추가")
+	
+	//id값 가져오기
+	var id = ${authUser.id};
 	
 	//카테고리명 읽어오기
 	var cateName = $("#cateName").val();
@@ -128,9 +131,10 @@ $("#btnAddCate").on("click", function(){
 	
 	//데이터 조합
 	var categoryVo = {
+		id : id	
 		cateName : cateName
 		description : description
-	}
+	};
 	
 	//데이터 ajax방식으로 서버에 전송
 	$.ajax({
@@ -142,8 +146,8 @@ $("#btnAddCate").on("click", function(){
 		dataType : "json",
 		success : function(categoryVo){
 			/*성공시 처리해야될 코드 작성*/
-			console.log(guestbookVo);
-			render(categoryVo, "up");
+			/*console.log(categoryVo);
+			render(categoryVo);
 			
 			//입력폼 초기화
 			$("#cateName").val("");	//()안에 ""있으면 값 비워줌
@@ -154,19 +158,22 @@ $("#btnAddCate").on("click", function(){
 			console.error(status + " : " + error);
 		}
 	});
-});
+});*/
 
 
 //리스트 가져오기
 function fetchList(){
+	var id = ${authUser.id};
+	console.log(id);
+	
 	$.ajax({
 		
 		/******여긴 요청 보내는거********/
-		url : "${pageContext.request.contextPath }/{id}/api/category/list",		
+		url : "${pageContext.request.contextPath }/api/category/list",		
 		type : "post",
 		//contentType : "application/json",
-		//data : {name: ”홍길동"},
-
+		data : {id: id},
+		
 		/******여긴 요청 받는거********/
 		//dataType : "json",			//json방식으로 받겠다
 		success : function(categoryList){
@@ -175,7 +182,7 @@ function fetchList(){
 			
 			//화면에 그리기
 	         for(var i = 0; i < categoryList.length; i++) {
-	             render(categoryList[i], "down");	//방명록 글 1개씩 추가하기(그리기). down은 밑으로 붙으라고 하는거.
+	             render(categoryList[i]);	//방명록 글 1개씩 추가하기(그리기). down은 밑으로 붙으라고 하는거.
 	          }
 		},
 		error : function(XHR, status, error) {
@@ -187,7 +194,7 @@ function fetchList(){
 
 
 //카테고리 리스트 그리기
-function render(){
+function render(categoryVo){
 	var srt = "";
 	str +='<tr>';
 	str +='		<td>1</td>';
@@ -199,14 +206,7 @@ function render(){
 	str +='		</td>';
 	str +='	</tr>';
 	
-	
-    if(type === 'down'){
-    	$("#cateList").append(str);            	
-    } else if(type === 'up'){
-    	$("#cateList").prepend(str);
-    } else {
-    	console.log("방향을 지정해 주세요");
-    }
+	$("#cateList").prepend(str);
 };
 
 

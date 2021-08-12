@@ -25,6 +25,8 @@ public class BlogController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	
 	//블로그 메인
 	@RequestMapping(value = "/{id}", method = {RequestMethod.GET, RequestMethod.POST})
 	public String main(Model model, @PathVariable("id") String id ) {

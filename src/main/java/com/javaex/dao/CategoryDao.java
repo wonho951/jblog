@@ -44,7 +44,7 @@ public class CategoryDao {
 	
 	public List<CategoryVo> getCategoryList(String id){
 		System.out.println("[CategoryDao.getCategoryList(id)]");
-		
+		System.out.println(id);
 		return sqlSession.selectList("category.categoryList");
 	}
 }

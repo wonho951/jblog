@@ -13,7 +13,7 @@ import com.javaex.service.CategoryService;
 import com.javaex.vo.CategoryVo;
 
 @Controller
-@RequestMapping(value = "/{id}/api/category")
+@RequestMapping(value = "/api/category")
 public class ApiCategoryController {
 
 	@Autowired
@@ -34,11 +34,12 @@ public class ApiCategoryController {
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
 	public List<CategoryVo> List(@ModelAttribute CategoryVo categoryVo){
 		System.out.println("[ApiCategoryController.List()]");
+		System.out.println(categoryVo.getId());
 		
 		List<CategoryVo> categoryList = categoryService.categoryList(categoryVo.getId());
 		
 		System.out.println(categoryList);
-		
+		System.out.println(categoryVo.getId());
 		return categoryList;
 	}
 	
