@@ -76,11 +76,11 @@
 					</colgroup>
 		      		<tr>
 		      			<td class="t">카테고리명</td>
-		      			<td><input id = "cateName" type="text" name="name" value=""></td>
+		      			<td><input type="text" name="name" value=""></td>
 		      		</tr>
 		      		<tr>
 		      			<td class="t">설명</td>
-		      			<td><input id = "description" type="text" name="desc"></td>
+		      			<td><input type="text" name="desc"></td>
 		      		</tr>
 		      	</table> 
 			
@@ -108,37 +108,56 @@
 $(document).ready(function(){
 	console.log("화면 로딩 직전");
 	
-	//ajax로 요청하기
-	fetchList();
+	//ajax 요청하기
+	$.ajax({
+		
+		url : "${pageContext.request.contextPath }/${id}/admin/category/list",
+		type : "post",
+		//contentType : "application/json",
+		//data : {name: ”홍길동"},
+
+		//dataType : "json",					
+		success : function(categoryList){
+			/*성공시 처리해야될 코드 작성*/
+			console.log(categoryList);
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+	
+	//fetchList();
 	//나중에 코드 볼때 한눈에 알아 볼 수 있게끔 하기
 });
 
-
-
 /*
+//카테고리 추가 버튼 클릭
 $("#btnAddCate").on("click", function(){
 	//event.preventDefault();
 	console.log("카테고리 추가")
 	
 	//id값 가져오기
-	var id = ${authUser.id};
+	var id = "${authUser.id}";
+	console.log(id);
 	
 	//카테고리명 읽어오기
-	var cateName = $("#cateName").val();
+	var cateName = $("[name=name]").val();
+	console.log(cateName);
 	
 	//설명 값 읽어오기
-	var description = $("#description").val();
+	var description = $("[name=desc]").val();
+	console.log(description);
 	
 	//데이터 조합
 	var categoryVo = {
-		id : id	
-		cateName : cateName
+		id : id	,
+		cateName : cateName,
 		description : description
 	};
 	
 	//데이터 ajax방식으로 서버에 전송
-	$.ajax({
-		url : "${pageContext.request.contextPath }/api/guestbook/write",
+	/*$.ajax({
+		url : "${pageContext.request.contextPath }/guestbook/write",
 		type : "get",
 		//contentType : "application/json",	//json방식으로 보내겠다!
 		data : categoryVo,
@@ -162,34 +181,34 @@ $("#btnAddCate").on("click", function(){
 
 
 //리스트 가져오기
-function fetchList(){
-	var id = ${authUser.id};
-	console.log(id);
+// function fetchList(){
+// 	var id = "${blogVo.id}";
+// 	console.log(id);
 	
-	$.ajax({
+// 	$.ajax({
 		
-		/******여긴 요청 보내는거********/
-		url : "${pageContext.request.contextPath }/api/category/list",		
-		type : "post",
-		//contentType : "application/json",
-		data : {id: id},
+// 		/******여긴 요청 보내는거********/
+// 		url : "${pageContext.request.contextPath }/${blogVo.id}/admin/category/list",		
+// 		type : "post",
+// 		//contentType : "application/json",
+// // 		data :
 		
-		/******여긴 요청 받는거********/
-		//dataType : "json",			//json방식으로 받겠다
-		success : function(categoryList){
-			/*성공시 처리해야될 코드 작성*/
-			console.log(categoryList);
-			
-			//화면에 그리기
-	         for(var i = 0; i < categoryList.length; i++) {
-	             render(categoryList[i]);	//방명록 글 1개씩 추가하기(그리기). down은 밑으로 붙으라고 하는거.
-	          }
-		},
-		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
-		}
-	});
-};
+// 		/******여긴 요청 받는거********/
+// 		dataType : "json",			//json방식으로 받겠다
+// 		success : function(categoryList){
+// 			/*성공시 처리해야될 코드 작성*/
+// 			console.log(categoryList);	
+// 			console.log(성공);
+// // 			//화면에 그리기
+// // 	         for(var i = 0; i < categoryList.length; i++) {
+// // 	             render(categoryList[i]);	//방명록 글 1개씩 추가하기(그리기). down은 밑으로 붙으라고 하는거.
+// 	          //}
+// 		},
+// 		error : function(XHR, status, error) {
+// 			console.error(status + " : " + error);
+// 		}
+// 	});
+// };
 
 
 
@@ -197,10 +216,10 @@ function fetchList(){
 function render(categoryVo){
 	var srt = "";
 	str +='<tr>';
-	str +='		<td>1</td>';
-	str +='		<td>자바프로그래밍</td>';
+	str +='		<td>' + categoryVo.cateNo + '</td>';
+	str +='		<td>' + categoryVo.cateName + '</td>';
 	str +='		<td>7</td>';
-	str +='		<td>자바기초와 객체지향</td>';
+	str +='		<td>' + categoryVo.description + '</td>';
 	str +='		<td class="text-center">';
 	str +='			<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">';
 	str +='		</td>';

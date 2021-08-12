@@ -33,18 +33,10 @@ public class CategoryDao {
 	
 	
 	//리스트 가져오기
-	/*public List<CategoryVo> getCategoryList(String id){
-		System.out.println("[CategoryDao.getCategoryList(id)] : " + id);
-		
-		return sqlSession.selectList("category.categoryList", id);
-	}*/
-	
-	
-	
-	
 	public List<CategoryVo> getCategoryList(String id){
 		System.out.println("[CategoryDao.getCategoryList(id)]");
 		System.out.println(id);
-		return sqlSession.selectList("category.categoryList");
+		
+		return sqlSession.selectList("category.categoryList", id);
 	}
 }
