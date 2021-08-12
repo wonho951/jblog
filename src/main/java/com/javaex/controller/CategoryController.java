@@ -14,28 +14,19 @@ import com.javaex.service.CategoryService;
 import com.javaex.vo.CategoryVo;
 
 @Controller
-@RequestMapping(value = "/{id}/admin/category")
+//@RequestMapping(value = "/{id}/admin/category")
 public class CategoryController {
 
 	@Autowired
 	private CategoryService categoryService;
 	
-	/*@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
-	public List<CategoryVo> List(@PathVariable("id") String id){
-		System.out.println("[ApiCategoryController.List()]");
-		
-		List<CategoryVo> categoryList = categoryService.categoryList(id);
-		
-		System.out.println(categoryList);
-		
-		return categoryList;
-	}*/
-	
+
+	//카테고리 리스트
 	@ResponseBody
-	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/{id}/admin/category/list", method = {RequestMethod.GET, RequestMethod.POST})
 	public List<CategoryVo> List(@PathVariable("id") String id){
-		System.out.println("[ApiCategoryController.List()] zzzzzzzzzzzzzzzz" + id);
-		
+		System.out.println("[CategoryController.List()]");
+		System.out.println("아이디 : " + id);
 		
 		List<CategoryVo> categoryList = categoryService.categoryList(id);
 		
@@ -43,4 +34,17 @@ public class CategoryController {
 		return categoryList;
 	}
 	
+	
+	//카테고리 추가
+	@ResponseBody
+	@RequestMapping(value = "/admin/category/add", method = {RequestMethod.GET, RequestMethod.POST})
+	public CategoryVo add(@ModelAttribute CategoryVo categoryVo) {
+		System.out.println("[CategoryController.add()]");
+		System.out.println("vo :" + categoryVo);
+		
+		CategoryVo cateVo = categoryService.insert(categoryVo);
+		System.out.println(cateVo);
+		return cateVo;
+	}
 }
+//너 저 유알엘 아뒤는 일부러빼고보내는거임?ㅇㅇㅇㅇㅋㅇㅋ? 뭐가어쨋다는거임?? 잘보셈 

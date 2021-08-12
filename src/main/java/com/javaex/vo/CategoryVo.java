@@ -9,6 +9,8 @@ public class CategoryVo {
 	private String description;
 	private String regDate;
 	
+	private int postCount;
+	
 	//생성자
 	public CategoryVo() {
 		super();
@@ -31,6 +33,17 @@ public class CategoryVo {
 		this.regDate = regDate;
 	}
 	
+	public CategoryVo(int cateNo, String id, String cateName, String description, String regDate, int postCount) {
+		super();
+		this.cateNo = cateNo;
+		this.id = id;
+		this.cateName = cateName;
+		this.description = description;
+		this.regDate = regDate;
+		this.postCount = postCount;
+	}
+
+
 	//메소드 g/s
 	public int getCateNo() {
 		return cateNo;
@@ -63,13 +76,23 @@ public class CategoryVo {
 		this.regDate = regDate;
 	}
 	
+	public int getPostCount() {
+		return postCount;
+	}
+
+	public void setPostCount(int postCount) {
+		this.postCount = postCount;
+	}
+
+
+
 	//메소드 - 일반
 	@Override
 	public String toString() {
 		return "CategoryVo [cateNo=" + cateNo + ", id=" + id + ", cateName=" + cateName + ", description=" + description
-				+ ", regDate=" + regDate + "]";
+				+ ", regDate=" + regDate + ", postCount=" + postCount + "]";
 	}
-	
+
 	
 	
 	

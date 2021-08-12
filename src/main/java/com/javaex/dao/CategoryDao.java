@@ -37,6 +37,28 @@ public class CategoryDao {
 		System.out.println("[CategoryDao.getCategoryList(id)]");
 		System.out.println(id);
 		
-		return sqlSession.selectList("category.categoryList", id);
+		//return sqlSession.selectList("category.categoryList", id);
+		return sqlSession.selectList("category.countList", id);
 	}
+	
+	
+	//카테고리 추가 
+	public int insert(CategoryVo categoryVo) {
+		System.out.println("[CategoryDao.insert]");
+		System.out.println("xml가기전 : " + categoryVo);
+		
+		int count = sqlSession.insert("category.insert2", categoryVo);
+		System.out.println("xml갔다온후 : " + categoryVo);
+		return count;
+	}
+	
+	
+	//카테고리 1개 꺼내오기
+	public CategoryVo selectCategory(int cateNo) {
+		System.out.println("[CategoryDao.selectOne]");
+		
+		return sqlSession.selectOne("category.selectCategory", cateNo);
+	}
+	
+	
 }
