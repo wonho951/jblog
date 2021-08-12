@@ -52,7 +52,7 @@
 		]]>
 	</select>
 	
-	<!-- 카테고리 글 저장 -->
+	<!-- 카테고리 글 저장 insert가 위에 있었네..하...-->
 	<insert id="selectCategory" parameterType="CategoryVo">
 		<selectKey keyProperty="cateNo" resultType="int" order="BEFORE">
 			<![CDATA[
