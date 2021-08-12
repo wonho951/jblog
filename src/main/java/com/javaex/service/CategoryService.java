@@ -37,7 +37,7 @@ public class CategoryService {
 		System.out.println("[CategoryService.insert()]");
 		
 		System.out.println("가기전" + categoryVo);		
-		categoryDao.insert(categoryVo);
+		categoryDao.insertCategory(categoryVo);
 		System.out.println("갔다온 후" + categoryVo);
 		
 		int cateNo = categoryVo.getCateNo();

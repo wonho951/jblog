@@ -43,11 +43,11 @@ public class CategoryDao {
 	
 	
 	//카테고리 추가 
-	public int insert(CategoryVo categoryVo) {
+	public int insertCategory(CategoryVo categoryVo) {
 		System.out.println("[CategoryDao.insert]");
 		System.out.println("xml가기전 : " + categoryVo);
 		
-		int count = sqlSession.insert("category.insert2", categoryVo);
+		int count = sqlSession.insert("category.insertCategory", categoryVo);
 		System.out.println("xml갔다온후 : " + categoryVo);
 		return count;
 	}
@@ -55,7 +55,7 @@ public class CategoryDao {
 	
 	//카테고리 1개 꺼내오기
 	public CategoryVo selectCategory(int cateNo) {
-		System.out.println("[CategoryDao.selectOne]");
+		System.out.println("[CategoryDao.selectCategory]");
 		
 		return sqlSession.selectOne("category.selectCategory", cateNo);
 	}

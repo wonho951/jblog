@@ -215,7 +215,8 @@ function render(categoryVo){
 	$("#cateList").prepend(str);
 };
 
-
+//삭제하기
+$("")
 
 </script>
 
