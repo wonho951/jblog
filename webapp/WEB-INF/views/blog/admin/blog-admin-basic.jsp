@@ -62,7 +62,7 @@
 			      			<td><input id="textLogo" type="file" name="file"></td>      			
 			      		</tr>           		
 			      	</table>
-			      	<input type = "text" name = "id" value = "${authUser.id }">
+			      	<input type = "hidden" name = "id" value = "${authUser.id }">
 			      	<div id="btnArea">
 			      		<button class="btn_l" type="submit" >기본설정변경</button>
 			      	</div>
