@@ -83,14 +83,17 @@ public class BlogController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	//내 블로그 관리(카테고리)
+	@RequestMapping(value = "/{id}/admin/category", method = {RequestMethod.GET, RequestMethod.POST})
+	public String category(@PathVariable("id") String id, Model model) {
+		System.out.println("[BlogController.category]");
+		
+		BlogVo blogVo = blogService.selectOne(id);
+		
+		model.addAttribute("blogVo", blogVo);
+		
+		return "blog/admin/blog-admin-cate";
+	}
 	
 	
 	

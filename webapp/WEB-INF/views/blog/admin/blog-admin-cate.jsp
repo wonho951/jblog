@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -8,6 +8,7 @@
 <title>JBlog</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 
+<script type="text/javascript" src = "${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
 
 </head>
 
@@ -15,13 +16,13 @@
 	<div id="wrap">
 		
 		<!-- 개인블로그 해더 -->
-
+		<c:import url="/WEB-INF/views/includes/blog-header.jsp"></c:import>
 
 		<div id="content">
 			<ul id="admin-menu" class="clearfix">
-				<li class="tabbtn selected"><a href="">기본설정</a></li>
-				<li class="tabbtn"><a href="">카테고리</a></li>
-				<li class="tabbtn"><a href="">글작성</a></li>
+				<li class="tabbtn"><a href="${pageContext.request.contextPath}/${authUser.id}/admin/basic">기본설정</a></li>
+				<li class="tabbtn selected"><a href="${pageContext.request.contextPath}/${authUser.id}/admin/category">카테고리</a></li>
+				<li class="tabbtn"><a href="${pageContext.request.contextPath}/${authUser.id}/admin/write">글작성</a></li>
 			</ul>
 			<!-- //admin-menu -->
 			
@@ -46,7 +47,7 @@
 		      		</thead>
 		      		<tbody id="cateList">
 		      			<!-- 리스트 영역 -->
-		      			<tr>
+		      			<%-- <tr>
 							<td>1</td>
 							<td>자바프로그래밍</td>
 							<td>7</td>
@@ -63,7 +64,7 @@
 						    <td class='text-center'>
 						    	<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">
 						    </td>
-						</tr>
+						</tr> --%>
 						<!-- 리스트 영역 -->
 					</tbody>
 				</table>
@@ -75,11 +76,11 @@
 					</colgroup>
 		      		<tr>
 		      			<td class="t">카테고리명</td>
-		      			<td><input type="text" name="name" value=""></td>
+		      			<td><input id = "cateName" type="text" name="name" value=""></td>
 		      		</tr>
 		      		<tr>
 		      			<td class="t">설명</td>
-		      			<td><input type="text" name="desc"></td>
+		      			<td><input id = "description" type="text" name="desc"></td>
 		      		</tr>
 		      	</table> 
 			
@@ -101,7 +102,116 @@
 	<!-- //wrap -->
 </body>
 
+<script type="text/javascript">
 
+//화면이 로딩되기 직전 -> DOM생성
+$(document).ready(function(){
+	console.log("화면 로딩 직전");
+	
+	//ajax로 요청하기
+	fetchList();
+	//나중에 코드 볼때 한눈에 알아 볼 수 있게끔 하기
+});
+
+
+
+
+$("#btnAddCate").on("click", function(){
+	//event.preventDefault();
+	console.log("카테고리 추가")
+	
+	//카테고리명 읽어오기
+	var cateName = $("#cateName").val();
+	
+	//설명 값 읽어오기
+	var description = $("#description").val();
+	
+	//데이터 조합
+	var categoryVo = {
+		cateName : cateName
+		description : description
+	}
+	
+	//데이터 ajax방식으로 서버에 전송
+	$.ajax({
+		url : "${pageContext.request.contextPath }/api/guestbook/write",
+		type : "get",
+		//contentType : "application/json",	//json방식으로 보내겠다!
+		data : categoryVo,
+		
+		dataType : "json",
+		success : function(categoryVo){
+			/*성공시 처리해야될 코드 작성*/
+			console.log(guestbookVo);
+			render(categoryVo, "up");
+			
+			//입력폼 초기화
+			$("#cateName").val("");	//()안에 ""있으면 값 비워줌
+			$("#description").val("");
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+});
+
+
+//리스트 가져오기
+function fetchList(){
+	$.ajax({
+		
+		/******여긴 요청 보내는거********/
+		url : "${pageContext.request.contextPath }/{id}/api/category/list",		
+		type : "post",
+		//contentType : "application/json",
+		//data : {name: ”홍길동"},
+
+		/******여긴 요청 받는거********/
+		//dataType : "json",			//json방식으로 받겠다
+		success : function(categoryList){
+			/*성공시 처리해야될 코드 작성*/
+			console.log(categoryList);
+			
+			//화면에 그리기
+	         for(var i = 0; i < categoryList.length; i++) {
+	             render(categoryList[i], "down");	//방명록 글 1개씩 추가하기(그리기). down은 밑으로 붙으라고 하는거.
+	          }
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+};
+
+
+
+//카테고리 리스트 그리기
+function render(){
+	var srt = "";
+	str +='<tr>';
+	str +='		<td>1</td>';
+	str +='		<td>자바프로그래밍</td>';
+	str +='		<td>7</td>';
+	str +='		<td>자바기초와 객체지향</td>';
+	str +='		<td class="text-center">';
+	str +='			<img class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">';
+	str +='		</td>';
+	str +='	</tr>';
+	
+	
+    if(type === 'down'){
+    	$("#cateList").append(str);            	
+    } else if(type === 'up'){
+    	$("#cateList").prepend(str);
+    } else {
+    	console.log("방향을 지정해 주세요");
+    }
+};
+
+
+
+</script>
 
 
 </html>

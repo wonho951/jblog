@@ -15,8 +15,17 @@ public class CategoryService {
 	private CategoryDao categoryDao;
 	
 	//리스트 가져오기
-	public List<CategoryVo> categoryList(String id){
+	/*public List<CategoryVo> categoryList(String id){
 		System.out.println("[CategoryService.categoryList(id)] : " + id);
+		
+		return categoryDao.getCategoryList(id);
+	}*/
+	
+	
+	
+	
+	public List<CategoryVo> categoryList(String id){
+		System.out.println("[CategoryService.categoryList(id)] ");
 		
 		return categoryDao.getCategoryList(id);
 	}
