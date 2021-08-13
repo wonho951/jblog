@@ -44,11 +44,12 @@ public class CategoryService {
 		
 		//글 가져오기
 		CategoryVo cateVo = categoryDao.selectCategory(cateNo);
-		System.out.println("카테써 글하나가져올거냐::" + cateVo);
+		System.out.println("카테써 글하나가져올거냐::" + cateNo);
 		
 		return cateVo;
 	}
 	
+	/*
 	//삭제
 	public boolean removeCategory(int cateNo) {
 		System.out.println("[CategoryService.removeCategory()]");
@@ -58,7 +59,7 @@ public class CategoryService {
 		
 		int Pcount = postCount.getPostCount();
 		
-		if(Pcount <= 0 ) {
+		if(Pcount == 0 ) {
 			categoryDao.categoryRemove(cateNo);
 			
 			return true;
@@ -66,10 +67,22 @@ public class CategoryService {
 			return false;
 		}
 		
+	}*/
+	
+	
+	
+	//삭제
+	public int removeCategory(int cateNo) {
+		System.out.println("[CategoryService.removeCategory()]");
+		System.out.println("서비스 :" + cateNo);
 		
-		
-		
+		return categoryDao.categoryRemove(cateNo);
 	}
+	
+	
+	
+	
+	
 	
 	
 	

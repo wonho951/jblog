@@ -47,7 +47,7 @@ public class CategoryDao {
 		System.out.println("[CategoryDao.insert]");
 		System.out.println("xml가기전 : " + categoryVo);
 		
-		int count = sqlSession.insert("category.insertCategory", categoryVo);
+		int count = sqlSession.insert("category.categoryInsert", categoryVo);
 		System.out.println("xml갔다온후 : " + categoryVo);
 		return count;
 	}
@@ -60,6 +60,28 @@ public class CategoryDao {
 		return sqlSession.selectOne("category.selectCategory", cateNo);
 	}
 	
+	/*
+	//카테고리 삭제
+	public int categoryRemove(int cateNo) {
+		System.out.println("[CategoryDao.categoryRemove]");
+		System.out.println("다오다오이리로 와다오 :" + cateNo);
+		
+		int count = sqlSession.delete("category.categoryRemove", cateNo);
+		System.out.println("xml갔다옴? : " + cateNo);
+		return count;
+	}*/
+	
+	
+	//포스트 카운트 가져오기
+	public CategoryVo countSelect(int cateNo) {
+		System.out.println("카운트 가져오기 :" + cateNo);
+		
+		CategoryVo postCount = sqlSession.selectOne("category.postCount", cateNo);
+		System.out.println("정보좀 주쇼 : " + postCount.getPostCount());
+		
+		return postCount;
+	}
+	
 	
 	//카테고리 삭제
 	public int categoryRemove(int cateNo) {
@@ -67,18 +89,11 @@ public class CategoryDao {
 		System.out.println("다오다오이리로 와다오 :" + cateNo);
 		
 		int count = sqlSession.delete("category.categoryRemove", cateNo);
-		
+		System.out.println("xml갔다옴? : " + cateNo);
 		return count;
 	}
 	
 	
-	//포스트 카운트 가져오기
-	public CategoryVo countSelect(int cateNo) {
-		CategoryVo postCount = sqlSession.selectOne("category.postCount", cateNo);
-		System.out.println(postCount.getPostCount());
-		
-		return postCount;
-	}
 	
 	
 }

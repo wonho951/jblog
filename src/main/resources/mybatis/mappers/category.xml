@@ -53,7 +53,7 @@
 	</select>
 	
 	<!-- 카테고리 글 저장 insert가 위에 있었네..하...-->
-	<insert id="insertCategory" parameterType="CategoryVo">
+	<insert id="categoryInsert" parameterType="CategoryVo">
 		<selectKey keyProperty="cateNo" resultType="int" order="BEFORE">
 			<![CDATA[
 				select seq_category_no.nextval from dual
@@ -62,11 +62,11 @@
 	
 		<![CDATA[
 			insert into category
-			values( #{cateNo},
-			        #{id},
-			        #{cateName},
-			        #{description},
-			        sysdate
+			values(  #{cateNo}
+			        ,#{id}
+			        ,#{cateName}
+			        ,#{description}
+			        ,sysdate
 			        )		
 		]]>
 	</insert>
@@ -104,15 +104,15 @@
 	
 	
 	<!-- 포스트 카운트 가져오기 -->
-		<select id="postCount" parameterType = "int" resultType = "CategoryVo">
+	<select id="postCount" parameterType = "int" resultType = "CategoryVo">
 		<![CDATA[
-		select 
-		     (select count(p.cateno)
-		      from post
-		      ) as postCount
-		from category c LEFT outer join post p
-		on p.cateno = c.cateno
-		where c.cateNo = #{cateNo}
+			select 
+			     (select count(p.cateno)
+			      from post
+			      ) as postCount
+			from category c LEFT outer join post p
+			on p.cateno = c.cateno
+			where c.cateNo = #{cateNo}
 		]]>
 	</select>
 	

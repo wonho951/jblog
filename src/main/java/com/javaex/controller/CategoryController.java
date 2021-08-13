@@ -48,7 +48,7 @@ public class CategoryController {
 		return cateVo;
 	}
 	
-	
+	/*
 	//카테고리 삭제
 	@ResponseBody
 	@RequestMapping(value = "/admin/category/remove", method = {RequestMethod.GET, RequestMethod.POST})
@@ -58,8 +58,31 @@ public class CategoryController {
 		
 		boolean count = categoryService.removeCategory(cateNo);
 		
-		System.out.println("컨트롤러 :"  + count);
+		System.out.println("갔다온 컨트롤러 :"  + count);
 		
 		return count;
+	}*/
+	
+	
+	
+	//카테고리 삭제
+	@ResponseBody
+	@RequestMapping(value = "/admin/category/remove", method = {RequestMethod.GET, RequestMethod.POST})
+	public int remove(@RequestParam("cateNo") int cateNo) {
+		System.out.println("[CategoryController.remove()]");
+		System.out.println("컨트롤러 :"  + cateNo);
+		
+		return categoryService.removeCategory(cateNo);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

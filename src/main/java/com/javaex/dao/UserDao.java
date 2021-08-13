@@ -18,7 +18,7 @@ public class UserDao {
 		System.out.println("[UserDao.join()]");
 		System.out.println("다오 : " + userVo);
 		
-		return sqlSession.insert("user.insert", userVo);
+		return sqlSession.insert("user.insertUser", userVo);
 	}
 	
 	
