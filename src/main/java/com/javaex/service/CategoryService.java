@@ -50,11 +50,25 @@ public class CategoryService {
 	}
 	
 	//삭제
-	public int removeCategory(int cateNo) {
+	public boolean removeCategory(int cateNo) {
 		System.out.println("[CategoryService.removeCategory()]");
 		System.out.println("서비스 :" + cateNo);
-		//return 1;
-		return categoryDao.categoryRemove(cateNo);
+		
+		CategoryVo postCount = categoryDao.countSelect(cateNo);
+		
+		int Pcount = postCount.getPostCount();
+		
+		if(Pcount <= 0 ) {
+			categoryDao.categoryRemove(cateNo);
+			
+			return true;
+		}else {
+			return false;
+		}
+		
+		
+		
+		
 	}
 	
 	

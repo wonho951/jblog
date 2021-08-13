@@ -208,7 +208,7 @@ function render(categoryVo, type){
 	str +='		<td>' + categoryVo.postCount + '</td>';
 	str +='		<td>' + categoryVo.description + '</td>';
 	str +='		<td class="text-center">';
-	str +='			<img data-cateno="' + categoryVo.cateNo + '" data-postcount="' + categoryVo.postCount +  '" class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">';
+	str +='			<img data-cateno="' + categoryVo.cateNo + '" class="btnCateDel" src="${pageContext.request.contextPath}/assets/images/delete.jpg">';
 	str +='		</td>';
 	str +='	</tr>';
 	
@@ -226,14 +226,10 @@ $("#cateList").on("click", "img", function(){
 	console.log("삭제하기")
 	
 	var cateNo = $(this).data("cateno");
-	var postCount = $(this).data("postcount");
+	//var postCount = $(this).data("postcount");
 	console.log(cateNo);
-	console.log(postCount);
-	
-	//포스트가 있는경우 삭제 할 수 없다.
-	if (postCount > 0){
-		alert("포스트가 존재하며 삭제할 수 없습니다.")
-	} else {
+	//console.log(postCount);
+		 
 		//서버에 삭제요청(cateNo, postCount 전달)
 		$.ajax({
 			
@@ -246,16 +242,21 @@ $("#cateList").on("click", "img", function(){
 			success : function(count){
 				/*성공시 처리해야될 코드 작성*/
 				console.log("성공");
-									
-				/* 리스트에 삭제버튼이 있던 테이블 화면에서 지운다. -> 삭제 누르면 삭제 누른 항목 브라우저에서 지워져야한다. -> DB에서는 지워짐 */
-				$("#t-" + cateNo).remove();
+				
+				if(count == false){
+					alert("포스트가 있어 삭제 할 수 없습니다.")
+				} else {
+					/* 리스트에 삭제버튼이 있던 테이블 화면에서 지운다. -> 삭제 누르면 삭제 누른 항목 브라우저에서 지워져야한다. -> DB에서는 지워짐 */
+					$("#t-" + cateNo).remove();
+				}					
+
 				
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 		});
-	}
+	
 	
 });
 

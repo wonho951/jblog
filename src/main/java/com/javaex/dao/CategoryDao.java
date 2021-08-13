@@ -65,8 +65,19 @@ public class CategoryDao {
 	public int categoryRemove(int cateNo) {
 		System.out.println("[CategoryDao.categoryRemove]");
 		System.out.println("다오다오이리로 와다오 :" + cateNo);
-		//return 1;
-		return sqlSession.delete("category.categoryRemove", cateNo);
+		
+		int count = sqlSession.delete("category.categoryRemove", cateNo);
+		
+		return count;
+	}
+	
+	
+	//포스트 카운트 가져오기
+	public CategoryVo countSelect(int cateNo) {
+		CategoryVo postCount = sqlSession.selectOne("category.postCount", cateNo);
+		System.out.println(postCount.getPostCount());
+		
+		return postCount;
 	}
 	
 	

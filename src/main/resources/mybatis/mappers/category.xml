@@ -101,5 +101,20 @@
 			where cateNo = #{cateNo}
 		]]>
 	</delete>
+	
+	
+	<!-- 포스트 카운트 가져오기 -->
+		<select id="postCount" parameterType = "int" resultType = "CategoryVo">
+		<![CDATA[
+		select 
+		     (select count(p.cateno)
+		      from post
+		      ) as postCount
+		from category c LEFT outer join post p
+		on p.cateno = c.cateno
+		where c.cateNo = #{cateNo}
+		]]>
+	</select>
+	
 
 </mapper>

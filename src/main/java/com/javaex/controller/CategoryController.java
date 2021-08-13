@@ -52,12 +52,14 @@ public class CategoryController {
 	//카테고리 삭제
 	@ResponseBody
 	@RequestMapping(value = "/admin/category/remove", method = {RequestMethod.GET, RequestMethod.POST})
-	public int remove(@RequestParam("cateNo") int cateNo) {
+	public boolean remove(@RequestParam("cateNo") int cateNo) {
 		System.out.println("[CategoryController.remove()]");
 		System.out.println("컨트롤러 :"  + cateNo);
 		
+		boolean count = categoryService.removeCategory(cateNo);
 		
-		//return 1;
-		return categoryService.removeCategory(cateNo);
+		System.out.println("컨트롤러 :"  + count);
+		
+		return count;
 	}
 }
