@@ -1,18 +1,26 @@
 package com.javaex.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.CategoryDao;
+import com.javaex.dao.PostDao;
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.PostVo;
 
 @Service
 public class CategoryService {
 
 	@Autowired
 	private CategoryDao categoryDao;
+	
+	@Autowired
+	private PostDao postDao;
+	
 	
 	//리스트 가져오기
 	/*public List<CategoryVo> categoryList(String id){
@@ -81,7 +89,52 @@ public class CategoryService {
 	
 	
 	
-	
+	//블로그 메인화면에 뿌려줄 데이터 
+	public Map<String, Object> categoryMap(String id, int cateNo, int postNo){
+		System.out.println("CategoryService.categoryMap()");
+		
+		Map<String, Object> listMap = new HashMap<String, Object>();
+		
+		List<CategoryVo> categoryList = categoryDao.getCategoryList(id);
+		System.out.println("categoryList");
+		
+		
+		if(cateNo == 0) {
+			cateNo = categoryList.get(0).getCateNo();
+			System.out.println("cateNo:" + cateNo);
+		}
+		
+		
+		
+		List<PostVo> postList = postDao.postList(cateNo);
+		
+		
+		if (postList.size() != 0) {
+			
+			if (postNo == 0) {
+				postNo = postList.get(0).getPostNo();
+				System.out.println("서비스1-postNo:" + postNo);
+			}
+		}
+		
+		System.out.println("서비스2-postNo" + postNo);
+		
+		PostVo postVo = postDao.postSelect(postNo);
+		System.out.println(postVo);
+		
+		listMap.put("categoryList", categoryList);
+		listMap.put("postList", postList);
+		listMap.put("postVo", postVo);
+		
+		
+		
+		return listMap;
+		
+		
+		
+		
+		
+	}
 	
 	
 	

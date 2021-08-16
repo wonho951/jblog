@@ -15,4 +15,37 @@
 					)
 	   	]]>
 	</insert>
+	
+	
+	
+	<!-- 포스트 리스트 -->
+	<select id="postList" parameterType="int" resultType="PostVo">
+		<![CDATA[
+			select   postNo
+			        ,cateNo
+			        ,postTitle
+			        ,postContent
+			        ,regDate
+			from post
+			where cateNo = #{cateNo}
+			order by postNo desc
+	   	]]>
+	</select>
+	
+	
+	<!-- 포스트 한개만 가져오기 -->
+	<select id="postSelect" parameterType="int" resultType="PostVo">
+			<![CDATA[
+			select   postNo
+			        ,cateNo
+			        ,postTitle
+			        ,postContent
+			        ,regDate
+			from post
+			where postNo = #{postNo}
+	   	]]>
+	
+	</select>
+	
+	
 </mapper>

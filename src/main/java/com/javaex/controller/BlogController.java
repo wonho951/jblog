@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,9 @@ public class BlogController {
 	
 	//블로그 메인
 	@RequestMapping(value = "/{id}", method = {RequestMethod.GET, RequestMethod.POST})
-	public String main(Model model, @PathVariable("id") String id ) {
+	public String main(Model model, @PathVariable("id") String id, 
+					   @RequestParam(value = "cateNo", required = false, defaultValue = "0") int cateNo,
+					   @RequestParam(value = "postNo", required = false, defaultValue = "0") int postNo) {
 		System.out.println("[BlogController.main()]" + id);
 		
 		
@@ -34,13 +38,18 @@ public class BlogController {
 		BlogVo blogVo = blogService.selectOne(id);
 		System.out.println(blogVo);
 		
-		/*
-		//카테고리 리스트 뿌려주기(제목)
-		List<CategoryVo> categoryList = categoryService.categoryList(id);
-		model.addAttribute("categoryList", categoryList);*/
+
 		
-		//블로그 생성 및 카테고리 
+		
+		//잘못된 접근 했을시
 		if (blogVo != null) {
+			//카테고리 리스트, 포스트 뿌려주기(제목)
+			Map<String, Object> listMap = categoryService.categoryMap(id, cateNo, postNo);
+			
+			System.out.println("메인 맵 : " + listMap);
+			
+			model.addAttribute("listMap", listMap);
+			
 			model.addAttribute("blogVo", blogVo);
 			//System.out.println("컨트롤러"+model);
 			
