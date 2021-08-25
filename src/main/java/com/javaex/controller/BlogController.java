@@ -38,8 +38,6 @@ public class BlogController {
 		BlogVo blogVo = blogService.selectOne(id);
 		System.out.println(blogVo);
 		
-
-		
 		
 		//잘못된 접근 했을시
 		if (blogVo != null) {
